@@ -1,9 +1,9 @@
-import SimpleForm from "./components/SimpleForm1";
+import Login from "./components/Login";
 
 function App() {
   return (
     <div>
-      <SimpleForm />
+      <Login />
     </div>
   );
 }

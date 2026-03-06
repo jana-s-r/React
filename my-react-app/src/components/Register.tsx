@@ -1,51 +1,63 @@
-import { useForm } from "react-hook-form";
-import "../styles/login.css";
-import { Link } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
 import { useState } from "react";
+import { useForm } from "react-hook-form";
+import "../styles/register.css";
+import { Link } from "react-router-dom";
+import { Message } from "rsuite";
+import "rsuite/dist/rsuite.min.css";
 
-function Login() {
+function Register() {
   type formValues = {
+    fullname: string;
     email: string;
     password: string;
   };
 
-  const navigate = useNavigate();
-  const [serverMsg, setServerMsg] = useState("");
   const form = useForm<formValues>();
+  const [success, setSuccess] = useState(false);
   const { register, handleSubmit, formState, reset } = form;
   const { errors } = formState;
 
   const onSubmit = async (data: formValues) => {
-    try {
-      const res = await fetch("http://localhost:5000/login", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(data),
-      });
+    console.log(data);
 
-      const msg = await res.text();
+    await fetch("http://localhost:5000/register", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    });
 
-      setServerMsg(msg);
-
-      if (msg === "Login Successful") {
-        navigate("/chatbot");
-      }
-
-      reset();
-    } catch (err) {
-      console.error(err);
-      alert("Server error");
-    }
+    setSuccess(true);
+    reset();
   };
 
   return (
-    <div className="login-container">
-      <div className="login-box">
-        <h2 className="name">Login</h2>
-        <form onSubmit={handleSubmit(onSubmit)}>
+    <div className="register-container">
+      {success && (
+        <div className="success-message">
+          <Message
+            type="success"
+            centered
+            showIcon
+            header="Registration Successful!"
+          >
+            Your account has been created successfully. You can now login.
+          </Message>
+        </div>
+      )}
+      <div className="register-box">
+        <h2 className="name">Registration Form</h2>
+        <form onSubmit={handleSubmit(onSubmit)} noValidate>
+          <div className="fullname">
+            <input
+              type="text"
+              placeholder="Full Name"
+              {...register("fullname", { required: "Full name is required" })}
+            />
+            <p className="errormsg">{errors.fullname?.message}</p>
+          </div>
+
           <div className="email">
             <input
               type="email"
@@ -61,7 +73,7 @@ function Login() {
             <p className="errormsg">{errors.email?.message}</p>
           </div>
 
-          <div className="pass">
+          <div className="password">
             <input
               type="password"
               placeholder="Password"
@@ -81,10 +93,12 @@ function Login() {
             />
             <p className="errormsg">{errors.password?.message}</p>
           </div>
-          {serverMsg && <p className="servermsg">{serverMsg}</p>}
-          <button className="btn btn-primary">Login</button>
+          <button type="submit" className="btn btn-primary reg">
+            Register
+          </button>
+
           <h3 className="reg">
-            Don't have an account? <Link to="/Register">Register</Link>
+            <Link to="/Login">Login</Link>
           </h3>
         </form>
       </div>
@@ -92,4 +106,4 @@ function Login() {
   );
 }
 
-export default Login;
+export default Register;

@@ -1,62 +1,66 @@
-.login-container {
+.register-container {
   background-color: lightblue;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
+  justify-content: flex-start; 
   display: flex;
   height: 100vh;
 }
 
-.login-box {
+.register-box {
   background-color: white;
   padding: 40px 60px;
   border-radius: 40px;
   width: 350px;
 }
 
-.name {
+
+.register-container .name {
   text-align: center;
   margin-bottom: 30px;
+  font-size: 25px;
 }
 
-.email,
-.pass {
+.register-container .fullname, .email, .password {
   margin-bottom: 20px;
 }
 
-.login-container input {
+.register-container input {
   width: 100%;
   padding: 10px;
   border-radius: 30px;
   border: 1px solid #ccc;
 }
 
-.login-container input::placeholder {
+.register-container input::placeholder {
   font-size: 12px;
 }
 
-.login-container button {
+.register-container button {
   width: 100%;
   margin-top: 10px;
 }
 
-.login-container .errormsg {
+.register-container .errormsg {
     color: crimson;
     font-size: 12px;
 }
-.login-container .reg {
+
+.register-container .reg {
     font-size: 12px;
     margin-top: 10px;
     text-align: center;
 }
 
-.reg span {
-    font-weight: bold;
+.register-container .successmsg {
+    color: green;
+    text-align: center;
+    margin-top: 20px;
 }
 
-
-.login-container .servermsg {
-  color: crimson;
-  font-size: 14px;
-  margin-top: 10px;
-  text-align: center;
+.register-container .success-message {
+  width: 40%;
+  padding: 10px;
+  margin-bottom: 20px;
 }

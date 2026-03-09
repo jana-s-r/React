@@ -35,7 +35,10 @@ function Chatbot() {
 
   return (
     <div className="chat-container">
-      <h2 className="name">ChatBot</h2>
+      <div className="chatbotname">
+        <img src="src/assets/logo.png" alt="logo" className="logo" />
+        <h2>ChatBot</h2>
+      </div>
 
       <div className="chat-box">
         {messages.map((msg, index) => (
@@ -52,6 +55,7 @@ function Chatbot() {
         <input
           type="text"
           className="searchbar"
+          placeholder="Ask anything"
           value={input}
           onChange={(e) => setInput(e.target.value)}
           onKeyDown={(e) => {

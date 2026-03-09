@@ -35,19 +35,17 @@ function Register() {
   return (
     <div className="register-container">
       {success && (
-        <div className="success-message">
-          <Message
-            type="success"
-            centered
-            showIcon
-            header="Registration Successful!"
-          >
-            Your account has been created successfully. You can now login.
-          </Message>
-        </div>
+        <Message
+          type="success"
+          centered
+          showIcon
+          header="Registration Successful!"
+        >
+          Your account has been created successfully. You can now login.
+        </Message>
       )}
       <div className="register-box">
-        <h2 className="name">Registration Form</h2>
+        <h2 className="registername">Registration Form</h2>
         <form onSubmit={handleSubmit(onSubmit)} noValidate>
           <div className="fullname">
             <input

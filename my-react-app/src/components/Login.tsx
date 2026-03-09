@@ -44,7 +44,7 @@ function Login() {
   return (
     <div className="login-container">
       <div className="login-box">
-        <h2 className="name">Login</h2>
+        <h2 className="loginname">Login</h2>
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className="email">
             <input
